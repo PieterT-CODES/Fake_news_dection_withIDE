@@ -1,0 +1,124 @@
+#:import Clock kivy.clock.Clock
+WindowManager:
+    HomeScreen: 
+    TextScreen: 
+    ResultScreen:
+
+<HomeScreen>:
+    name: 'homescreen'
+
+    RelativeLayout:
+        Image:
+            source: "logo.png"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.75}
+        MDFillRoundFlatIconButton:
+            icon: 'comment-text'
+            text: "Predict from text"
+            bold: True
+            md_bg_color: app.theme_cls.primary_dark
+            pos_hint: {'center_x': 0.5, 'center_y': 0.6}
+            size_hint: 0.6, None
+            on_press: app.root.current = 'textscreen'
+
+        MDFillRoundFlatIconButton:
+            icon: 'image'
+            text: "Predict from image"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            size_hint: 0.6, None
+            on_press: app.file_manager_open("search_for_image") 
+            on_release: Clock.schedule_interval(app.ping, 0.5)    
+            on_release: app.root.current = 'resultscreen'
+                          
+            
+        MDFillRoundFlatIconButton:
+            icon: 'file-pdf'
+            text: "Predict from pdf"
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+            size_hint: 0.6, None
+            on_press: app.file_manager_open("search_for_pdf")
+            on_release: Clock.schedule_interval(app.ping, 0.5)    
+            on_release: app.root.current = 'resultscreen'
+
+   
+
+<TextScreen>:
+    name: 'textscreen'
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+        spacing: 20
+        padding: 50
+
+        MDTextField: 
+            id: input
+            hint_text:'Enter an article what you want to evalueate'
+            mode: 'fill'
+            fill_color: 0, 0, 0, .1
+            multiline: True 
+            size_hint: (1, 1)          
+            
+        MDRaisedButton: 
+            text: "Evaluate information"
+            on_press: app.button_to_evaluate()
+            on_press: app.root.current = 'resultscreen'
+            
+<ResultScreen>:
+    name: 'resultscreen'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 10
+        MDRaisedButton: 
+            text: 'go home'
+            on_press: app.root.current = 'homescreen'
+            size_hint: (1, 0.2)
+        MDCard:
+            size_hint: 1, 1
+            padding:50
+            MDLabel:
+                text: "Result of truthfullnes\nwas evaluated as:"
+            MDLabel:
+                id: label_result 
+                font_style: 'H3'
+                theme_text_color: "Custom"
+         
+        MDCard:
+            size_hint: 1, 1
+            padding:50
+            FloatLayout:
+                MDLabel: 
+                    text: "Execution time:"
+                    pos_hint:{"x":0,"y":0.41}
+                MDIcon:
+                    icon: "camera-timer"
+                    font_size:"120sp"
+                    pos_hint:{"x":0,"y":-0.15}
+            MDLabel: 
+                id: label_time
+                font_style:'H4'
+                
+
+
+
+        
+         
+            
+        
+        
+        
+        
+        
+    
+
+
+
+
+
+
+
+
+
+
+
+
+  
