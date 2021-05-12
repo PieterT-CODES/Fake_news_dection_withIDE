@@ -20,7 +20,7 @@ labels = []
 
 def Scrap_data():
 
-    page = requests.get("https://www.bbc.com/news/coronavirus")
+    page = requests.get("---------SECRET------------")
     soup = BeautifulSoup(page.content, 'html.parser')
 
     final_links = []
@@ -39,7 +39,7 @@ def Scrap_data():
 
     #Prehľadávanie linkov na nové články     
     for item in final_links: 
-        page = requests.get(f"https://www.bbc.com{item}")
+        page = requests.get(f"----SECRET--------{item}")
         soup = BeautifulSoup(page.content, 'html.parser')
         #SCRAP title ↓
         titles.append(soup.find('h1').text)
