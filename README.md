@@ -1,5 +1,8 @@
 # Fake News Detector 
-Multiplatform aplication developed in Kivy who include machine learning model to detect truthfulness from text. Aplication also contain: 
+MultiPlatform application developed in Kivy which includes a machine learning model to detect truthfulness from text. Application also contain: 
+
+# Script data_for_fnd.py 
+Script cares about extending the dataset with new data and updating machine learning model.  
 
 # Text conversion from PDF
 ```
